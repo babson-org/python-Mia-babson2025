@@ -31,6 +31,11 @@ Given a list [2, 4, 6, 8, 10], write a program that prints the next three number
 list = [2, 4, 6, 8, 10]
 print(list[4]+2, list[4]+4, list[4]+6) 
 
+#professors way
+list = [2, 4, 6, 8, 10]
+for i in range(3):
+    next =list[-1] +2 + i *2
+    print(next)
 
 pause=input('pause')
 clear_screen()
@@ -58,10 +63,11 @@ Write a program that prints your Python version and platform using the sys and p
 '''
 import sys
 import platform
+import pprint
 
-
-print("Python version:", sys.version)
-print("Platform:", platform.platform())
+#pprint.pprint(dir(sys))
+print(type(sys.version))
+print(sys.version, sys.platform)
 
 
 
@@ -73,6 +79,21 @@ clear_screen()
 Ask the user to input two numbers. Calculate and print their sum, difference, product, 
 and division (both / and //).
 '''
+#in case someone enters text instead of number
+while True:
+    try:
+        num1 = int(input("Enter number here:"))
+        break
+    except ValueError:
+        print("Follow directions, enter a number:")
+
+while True:
+    try:
+        num2 = int(input("Enter a different number here:"))
+        break
+    except ValueError:
+        print("Follow directions, enter a number:")
+
 num1 = float(input("Enter number here:"))
 num2 = float(input("Enter a different number here:"))
 print('Sum:', num1+num2)
@@ -102,8 +123,8 @@ clear_screen()
 Calculate the result of the following without parentheses and then with parentheses:
 10 + 2 * 5 / 2 - 3 ** 2
 '''
-print("No parentheses:",float(10 + 2 * 5 / 2 - 3 ** 2))
-print("Parentheses:",float((10 + 2) * 5 / (2 - 3) ** 2))
+print("No parentheses:",(10 + 2 * 5 / 2 - 3 ** 2))
+print("Parentheses:",((10 + 2) * 5 / (2 - 3) ** 2))
 
 
 pause=input('pause')
@@ -115,6 +136,7 @@ Create a list of your three favorite foods. Replace the second item with a new o
 then print the list.
 '''
 food_list= ['pasta', 'pizza','burger']
+print(food_list)
 food_list[2] = 'green beans'
 print(food_list)
 
