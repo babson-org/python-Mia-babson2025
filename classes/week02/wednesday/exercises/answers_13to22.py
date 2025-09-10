@@ -3,10 +3,18 @@ from classes.week00.second_class.utils import clear_screen
 #13 - Conditional Logic
 Ask the user for a number and print whether it is positive, negative, or zero.
 '''
+txt = "Please enter a number:"
+while True:
+    try:
+        number = int(input(txt))
+        break
+    except ValueError:
+        txtm = 'a number for my kingdom'
+
 number = int(input("Please enter a number:"))
 if number > 0:
     print("Positive")
-elif number < 0: 
+elif number < 0:
     print("Negative")
 elif number == 0:
     print("Zero")
@@ -20,7 +28,14 @@ clear_screen()
 #14 - Even/Odd Check
 Ask the user for a number and print if it is even or odd.
 '''
-number = int(input("Please enter a number:"))
+txt = "Please enter a number:"
+while True:
+    try:
+        number = int(input(txt))
+        break
+    except ValueError:
+        txtm = 'a number for my kingdom:'
+
 if number % 2 == 0:
     print("Even")
 else:
@@ -35,15 +50,27 @@ clear_screen()
 #15 - Boolean Operators
 Ask the user for two numbers and check if both are positive, either is positive, or none is positive.
 '''
-num1 = int(input("Please enter a number here:"))
-num2 = int(input("Please enter another number here:"))
-if num1 and num2 >= 0:
+txt = "Please enter a number:"
+while True:
+    try:
+        num1 = int(input(txt))
+        break
+    except ValueError:
+        txtm = 'a number for my kingdom:'
+
+    txt2 = "Please enter a number:"
+while True:
+    try:
+        num2 = int(input(txt2))
+        break
+    except ValueError:
+        txtm = 'a number for my kingdom:'
+
+if num1 > 0 and num2 > 0:
     print("Both are positive")
-elif num2 < 0 and num1 >= 0:
-    print("The first number is positive")
-elif num2 >= 0 and num1 < 0:
-    print("The second number is positive")
-elif num1 and num2 < 0:
+elif num1 > 0 or num2 > 0:
+    print("One of them is positive")
+else:
     print("Neither are positive")
 
 
@@ -55,12 +82,8 @@ clear_screen()
 #16 - For Loop
 Print all numbers from 1 to 20, skipping multiples of 3.
 '''
-#just multiples of 3
-for i in range (0,21,3):
-    print(i)
 
-#excluding multiples of 3
-for i in range(0,21):
+for i in range(1,21):
     if i % 3 != 0:
         print(i)
 
@@ -76,7 +99,7 @@ secret_number = 3
 number = int(input("Guess a number:"))
 while number != secret_number:
     print("Incorrect, try again!")
-    number = int(input("Guess a number:"))
+    number = int(input("Guess a number":))
 else:
    print("Correct, good guess!")
 

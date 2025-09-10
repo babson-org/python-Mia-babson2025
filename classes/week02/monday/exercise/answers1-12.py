@@ -192,8 +192,8 @@ with open("quotes.txt", "w") as file:
 with open("quotes.txt", "r") as file:
     saved_quote = file.read()
 
-print("Your saved quote is:")
-print(saved_quote)
+print("Your saved quote is:" , save_quote)
+
 
 
 pause=input('pause')
