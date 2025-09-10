@@ -153,7 +153,9 @@ Write a function greet(name) with single-line and multi-line comments explaining
 '''
 name = input("Enter your name:")
 def greet(name):   #defining the function             
-           
+
+
+    print(name)       
     """ 
 This asks for input from the user
 and then the program will say Hello to that person
@@ -179,6 +181,7 @@ name5 = input("Enter another name:")
 
 my_list = [name1, name2, name3, name4, name5]
 my_list.sort()
+
 
 print(my_list)
  
