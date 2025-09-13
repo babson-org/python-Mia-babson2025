@@ -1,0 +1,16 @@
+txt = "Please enter a number:"
+while True:
+    try:
+        number = int(input(txt))
+        break
+    except ValueError:
+        txtm = 'a number for my kingdom'
+        print(txtm)
+
+number = int(input(txt))
+if number > 0:
+    print("Positive")
+elif number < 0:
+    print("Negative")
+elif number == 0:
+    print("Zero")
