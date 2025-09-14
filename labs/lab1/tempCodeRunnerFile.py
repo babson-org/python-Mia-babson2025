@@ -1,22 +1,24 @@
-def caesar_cipher():                          #defining function
-    text = input("Enter text:")
-    length = len(text)                       
-    shifted_text = [None] * length  
-    
-    txt = "Enter shift value (integer): "
-    while True:                              #to avoid break if user inputs text
+def draw_diamond():       #defining function
+    prompt = "Enter an odd number for the diamond height: "
+    while True:                                   #to avoid break if user inputs text or even int
         try:
-            shift = int(input(txt))
-            break
+            oddnum = int(input(prompt))
+            if oddnum % 2 == 0:
+                print("Enter an odd integer please")
+            else:
+                break
         except ValueError:
-            txtm = 'A number for my kingdom'
-            print(txtm)
-    choice = input("Type 'e' to encrypt or 'd' to decrypt: ").lower()
-    if choice == "e":
-        for idx in range(length):
-            new_idx = (idx + shift) % length
-            shifted_text[new_idx] = text[idx]
-        print("".join(shifted_text))               #joins letters together into words
-    if choice == "d":
-        print(text)
-caesar_cipher()               
+            txtb = 'An odd integer for my kingdom'
+            print(txtb)
+    tophalf = (oddnum // 2)+1   # round down and +1 includes middle line
+    for i in range(tophalf):
+        stars = 2 * i + 1                #gives symmetrical increasing amount of stars
+        spaces = (oddnum - stars) // 2     #centers the diamond with decreasing spaces
+        print(" " * spaces + "*" * stars)
+    bottomhalf = tophalf-1     #excludes middle
+    for i in range (bottomhalf-1, -1, -1):
+         stars = 2 * i + 1                
+         spaces = (oddnum - stars) // 2     
+         print(" " * spaces + "*" * stars)
+        
+draw_diamond()        

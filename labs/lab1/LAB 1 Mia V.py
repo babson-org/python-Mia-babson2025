@@ -16,8 +16,31 @@ def main():
             exit()
 main()
 
-def draw_diamond():
-    
+def draw_diamond():       #defining function
+    prompt = "Enter an odd number for the diamond height: "
+    while True:                                   #looping until valid odd integer inputed
+        try:
+            oddnum = int(input(prompt))
+            if oddnum % 2 == 0:
+                print("Enter an odd integer please")
+            else:
+                break
+        except ValueError:
+            txtb = 'An odd integer for my kingdom'
+            print(txtb)
+    tophalf = (oddnum // 2)+1   #includes rows in top half and middle line
+    for i in range(tophalf):
+        stars = 2 * i + 1                #calc for number of stars in each row
+        spaces = (oddnum - stars) // 2     #centers the diamond with decreasing spaces
+        print(" " * spaces + "*" * stars)
+    bottomhalf = tophalf-1     #includes rows in bottom half and excludes middle line
+    for i in range (bottomhalf -1, -1, -1):     #builds bottom half in reverse
+         stars = 2 * i + 1                
+         spaces = (oddnum - stars) // 2     
+         print(" " * spaces + "*" * stars)
+        
+draw_diamond()               #calling function
+
 def text_analysis():
     
 def caesar_cipher():                          #defining function
@@ -34,11 +57,13 @@ def caesar_cipher():                          #defining function
             txtm = 'A number for my kingdom'
             print(txtm)
     choice = input("Type 'e' to encrypt or 'd' to decrypt: ").lower()      
-    if choice == "e":
+    if choice == "e":                              #performing the shift
         for idx in range(length):
-            new_idx = (idx + shift) % length
+            new_idx = (idx + shift) % length       #new position, makes shift wrap around
             shifted_text[new_idx] = text[idx]
-        print("".join(shifted_text))               #joins letters together into words
+        result = "".join(shifted_text)             #joins letters together into words
+        print("Encrypted message:", result)             
     if choice == "d":
-        print(text)
+        print("Decrypted message:", text)
+        
 caesar_cipher()                              #calling function
