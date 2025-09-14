@@ -1,24 +1,27 @@
-def draw_diamond():       #defining function
-    prompt = "Enter an odd number for the diamond height: "
-    while True:                                   #to avoid break if user inputs text or even int
+def caesar_cipher():                          #defining function
+    text = input("Enter text:")
+    length = len(text)                        #number of characters in the text
+    shifted_text = [None] * length            #empty list for shifted characters
+    
+    txt = "Enter shift value (integer): "
+    while True:                              #loops until user inputs valid integer
         try:
-            oddnum = int(input(prompt))
-            if oddnum % 2 == 0:
-                print("Enter an odd integer please")
-            else:
-                break
+            shift = int(input(txt))
+            break
         except ValueError:
-            txtb = 'An odd integer for my kingdom'
-            print(txtb)
-    tophalf = (oddnum // 2)+1   # round down and +1 includes middle line
-    for i in range(tophalf):
-        stars = 2 * i + 1                #gives symmetrical increasing amount of stars
-        spaces = (oddnum - stars) // 2     #centers the diamond with decreasing spaces
-        print(" " * spaces + "*" * stars)
-    bottomhalf = tophalf-1     #excludes middle
-    for i in range (bottomhalf-1, -1, -1):
-         stars = 2 * i + 1                
-         spaces = (oddnum - stars) // 2     
-         print(" " * spaces + "*" * stars)
-        
-draw_diamond()        
+            txtm = 'A number for my kingdom'
+            print(txtm)
+    choice = input("Type 'e' to encrypt or 'd' to decrypt: ").lower()
+    for i, char in enumerate(text):  #each character and its position
+        if char.isalpha():
+            first_letter = ord('A') if char.isupper() else ord('a') #ASCII code
+            shifted_char = chr((ord(char) - first_letter + shift) % 26 + first_letter)
+            shifted_text[i] = shifted_char 
+        else:
+            shifted_text[i] = char        #keeps non-letters the same
+    result = "".join(shifted_text)        #joins list into a string
+    if choice == "e":           
+        print("Encrypted message:", result)    
+    elif choice == "d":
+        print("Decrypted message:", text)          #decryption shows the original text
+caesar_cipher()
