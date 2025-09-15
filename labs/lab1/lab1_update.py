@@ -1,3 +1,23 @@
+#Step 1: Define the function
+#Step 2: Prompt user to enter an odd integer
+#Step 3: Validate the input
+#Step 4: For Loop to create top half of the diamond
+#Step 5: For Loop to create bottom half of diamond
+'''
+Patterns in stars:
+When row increases by 1, stars increase by 2 until the 
+middle line then decrease by 2
+
+Patterns in spaces:
+When row increases by 1, spaces decrease by 1 until
+the middle line then increase by 1
+
+Patterns in between spaces:
+Excluding the first and last row, when the row increases 
+by 1, between spaces increase by 2 until the middle line
+and then decrease by 2
+'''
+
 def draw_diamond():       #defining function
     prompt = "Enter an odd number for the diamond height: "
     while True:                    #looping until valid odd integer inputed
@@ -10,18 +30,35 @@ def draw_diamond():       #defining function
         except ValueError:
             txtb = 'An odd integer for my kingdom'
             print(txtb)
-    top_half = (odd_num // 2)+1   #includes rows in top half and middle line
+
+    #top half (including middle line)
+    top_half = (odd_num // 2)+1  
     for i in range(top_half):
         stars = 2 * i + 1                #calc for number of stars in each row
         spaces = (odd_num - stars) // 2     #centers the diamond with decreasing spaces
-        print(" " * spaces + "*" * stars)
-    bottom_half = top_half - 1           #includes rows in bottom half and excludes middle line
+        if stars == 1:
+            print(" " * spaces + "*" * stars)
+        else:
+            between_spaces = stars - 2
+            print(" " * spaces + "*" + " " * between_spaces + "*")
+
+    #bottom half of diamond (excluding middle line)
+    bottom_half = top_half - 1          
     for i in range (bottom_half -1, -1, -1):     #builds bottom half in reverse
          stars = 2 * i + 1                
-         spaces = (odd_num - stars) // 2     
-         print(" " * spaces + "*" * stars)
-        
+         spaces = (odd_num - stars) // 2  
+         if stars == 1:   
+            print(" " * spaces + "*" * stars)
+         else:
+            between_spaces = stars - 2
+            print(" " * spaces + "*" + " " * between_spaces + "*")
+    
 
+#Step 1: Define the Function
+#Step 2: Ask user for block of text
+#Step 3: Count # of words in block using len() and .split()
+#Step 4: Count # of letters in block using for loop
+#Step 5: Count # of sentences in block using for loop
 def text_analysis():                            #defining function
     block = input("Enter a block of text: ")
     words = len(block.split())           #splits text into words then counts words with len()
@@ -40,7 +77,18 @@ def text_analysis():                            #defining function
                 sentence_count = sentence_count + 1   #increments setence count
     print("# of Sentences:", sentence_count)
 
-    
+
+#Step 1: Create alphabet list using ASCII code
+#Step 2: Prompt the user to enter text
+#Step 3: Prompt the user to input shift value (int 1-25)
+#Step 4: Prompt the user to encrypt or decrypt the shift
+    #If user inputs to encrypt
+    #Step 5: Create a list to hold the shifted characters
+    #Step 6: Loop through each character in text
+    #Step 7: Join the shifted characters into a string
+    #Step 8: Display the results
+    #If user inputs to decrypt
+    #Step 5: Display original text 
 def caesar_cipher():                          #defining function
     alphabet = []
     for idx in range(26):
@@ -52,32 +100,42 @@ def caesar_cipher():                          #defining function
     shifted_text = [None] * length            #empty list for shifted characters
     
     txt = "Enter shift value (integer) between 1-25: "
-    while True:                       #loops until user inputs valid integer
+    while True:                       #loops until user inputs valid integer (1-25)
         try:
             shift = int(input(txt))
-            break
+            if 1<= shift <=  25:
+                break
+            else:
+                print("Shift must be between 1 and 25")
         except ValueError:
             txtm = 'A number for my kingdom'
             print(txtm)
 
     choice = input("Type 'e' to encrypt or 'd' to decrypt: ").lower()
+
     for i, char in enumerate(text):  #each character and its position
         char_lower = char.lower()    #converts character to lowercase
-        if char in alphabet:
+        if char_lower in alphabet:
             index = alphabet.index(char_lower)   #identify the index of character
             shifted_index = (index + shift) % 26   #apply shift with wrap around
             shifted_char = alphabet[shifted_index]
-            shifted_text[i] = shifted_char 
+            shifted_text[i] = shifted_char      
         else:
             shifted_text[i] = char        #keeps non-letters the same
     result = "".join(shifted_text)        #joins list into a string
    
     if choice == "e":           
-        print("Encrypted message:", result)    
-    elif choice == "d":
-        print("Decrypted message:", text)          #decryption shows the original text
+        print("Encrypted message:", result)   
+    elif choice == "d":             #decryption shows the original text
+        print("Decrypted message:", text) 
+    else:
+        print("Invalid choice, choose either 'e' or 'd'") 
 
-
+#Step 1: Define main function
+#Step 2: Display the three prorams
+#Step 3: Prompt user to choose one of the programs (1, 2, 3)
+#Step 4: Call the function depending on user choice
+#Step 5: Exit program if user does not input 1, 2, or 3
 def main():           #placed last because functions are defined above
     while True:
         print("Lab 1 - Python Basics")
