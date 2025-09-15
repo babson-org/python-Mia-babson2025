@@ -1,6 +1,6 @@
 def draw_diamond():       #defining function
     prompt = "Enter an odd number for the diamond height: "
-    while True:                                   #looping until valid odd integer inputed
+    while True:                    #looping until valid odd integer inputed
         try:
             odd_num = int(input(prompt))
             if odd_num % 2 == 0:
@@ -15,7 +15,7 @@ def draw_diamond():       #defining function
         stars = 2 * i + 1                #calc for number of stars in each row
         spaces = (odd_num - stars) // 2     #centers the diamond with decreasing spaces
         print(" " * spaces + "*" * stars)
-    bottom_half = top_half-1           #includes rows in bottom half and excludes middle line
+    bottom_half = top_half - 1           #includes rows in bottom half and excludes middle line
     for i in range (bottom_half -1, -1, -1):     #builds bottom half in reverse
          stars = 2 * i + 1                
          spaces = (odd_num - stars) // 2     
@@ -26,11 +26,13 @@ def text_analysis():                            #defining function
     block = input("Enter a block of text: ")
     words = len(block.split())           #splits text into words then counts words with len()
     print("# of Words:", words)
+
     letter_count = 0
     for char in block:                #iterates over every character in block
         if char.isalpha():             #checks if character is a-z or A-Z (letters)
             letter_count = letter_count + 1       #counts number of characters that are letters
     print("# of Letters:", letter_count)
+
     punctuation = ('.', '!', '?')          #list of punctuation that goes at end of a sentence
     sentence_count = 0
     for char in block:                   #iterates over every character in block
@@ -40,27 +42,36 @@ def text_analysis():                            #defining function
 
     
 def caesar_cipher():                          #defining function
+    alphabet = []
+    for idx in range(26):
+        letter = chr(idx+97) #ASCII code for 'a'
+        alphabet.append(letter)
+
     text = input("Enter text:")
     length = len(text)                        #number of characters in the text
     shifted_text = [None] * length            #empty list for shifted characters
     
-    txt = "Enter shift value (integer): "
-    while True:                              #loops until user inputs valid integer
+    txt = "Enter shift value (integer) between 1-25: "
+    while True:                       #loops until user inputs valid integer
         try:
             shift = int(input(txt))
             break
         except ValueError:
             txtm = 'A number for my kingdom'
             print(txtm)
+
     choice = input("Type 'e' to encrypt or 'd' to decrypt: ").lower()
     for i, char in enumerate(text):  #each character and its position
-        if char.isalpha():
-            first_letter = ord('A') if char.isupper() else ord('a') #ASCII code
-            shifted_char = chr((ord(char) - first_letter + shift) % 26 + first_letter)
+        char_lower = char.lower()    #converts character to lowercase
+        if char in alphabet:
+            index = alphabet.index(char_lower)   #identify the index of character
+            shifted_index = (index + shift) % 26   #apply shift with wrap around
+            shifted_char = alphabet[shifted_index]
             shifted_text[i] = shifted_char 
         else:
             shifted_text[i] = char        #keeps non-letters the same
     result = "".join(shifted_text)        #joins list into a string
+   
     if choice == "e":           
         print("Encrypted message:", result)    
     elif choice == "d":
