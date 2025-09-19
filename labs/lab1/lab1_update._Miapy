@@ -1,3 +1,36 @@
+'''
+Mia, nice job on the lab Grade A
+
+a little problem in Caesar, you need to change the sign
+of shift if decrypting.
+
+Great use of comments.
+
+Would like to see better explanation of your computational
+thinking in problem solving at the top of each problem.
+
+Ask yourself this question:
+
+if I do exactly what I say in each listed step would the program 
+be written correctly?
+
+so for the diamond problem:
+computational thinking:
+1) we notice that the middle line will be row number height // 2 + 1
+2) diamond is comprised of a top half and a bottom half
+3) for the top half the before spaces start at height // 2 and decrease to 0
+4) for the bottom half spaces start at 1 and increase to height // 2
+5) top half has middle line
+6) the first and last lines only have 1 star
+7) pattern of spaces between for subsequent lines start at 1 and increase by 2 for the top half
+8) for bottom half spaces between start at height //2 and decrease by 2
+
+txt_analysis() is pretty clear
+
+'''
+
+
+
 #Step 1: Define the function
 #Step 2: Prompt user to enter an odd integer
 #Step 3: Validate the input
@@ -5,6 +38,8 @@
 #Step 5: For Loop to create bottom half of diamond
 '''
 #RS Read what you wrote here.
+
+this is good but a visual would have been helpful
 
 Patterns in stars:
 When row increases by 1, stars increase by 2 until the 
