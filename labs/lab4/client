@@ -1,0 +1,32 @@
+clients = []  #list
+
+#Three dictionaries
+client = {'id': None, 'fname':None, 'lname':None, 'positions': [], 'transactions':[]}
+
+position = {'id': None, 'shares': None, 'symbol':None, 'name': None, 'avg_cost': None}
+
+transaction = {'id': None, 'timestamp':None, 'type':None, 'shares':None, 'symbol':None, 'name':None, 'trn_price':None}
+
+import json
+import os
+from datetime import datetime
+
+CLIENTS_JSON_FILE = 'portfolio/clients.json'
+
+def load_clients():
+    if os.path.exists(CLIENTS_JSON_FILE):
+        try:
+            with open (CLIENTS_JSON_FILE, 'r')as file:
+                return json.load(file)
+        except json.JSONDecodeError:
+            print('FATAL ERROR: Your clients.json file is corrupt')
+            exit()
+    return[]
+
+def display_menu():
+    txt = 'Select menu item (display_menu()):'
+    while True:
+        print('\n\n\n')
+        for idx, item in enumerate(menu_items, start = 1):
+            print(f'{idx}') #not finished
+

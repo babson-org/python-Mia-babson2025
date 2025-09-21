@@ -4,6 +4,8 @@
 #Step 4: For Loop to create top half of the diamond
 #Step 5: For Loop to create bottom half of diamond
 '''
+#RS Read what you wrote here.
+
 Patterns in stars:
 When row increases by 1, stars increase by 2 until the 
 middle line then decrease by 2
@@ -19,6 +21,7 @@ and then decrease by 2
 '''
 
 def draw_diamond():       #defining function
+
     prompt = "Enter an odd number for the diamond height: "
     while True:                    #looping until valid odd integer inputed
         try:
@@ -113,6 +116,12 @@ def caesar_cipher():                          #defining function
 
     choice = input("Type 'e' to encrypt or 'd' to decrypt: ").lower()
 
+    '''
+    you need to change the sign of shift to decrypt
+    '''
+
+    if choice == 'd': shift = -shift
+
     for i, char in enumerate(text):  #each character and its position
         char_lower = char.lower()    #converts character to lowercase
         if char_lower in alphabet:
@@ -127,7 +136,8 @@ def caesar_cipher():                          #defining function
     if choice == "e":           
         print("Encrypted message:", result)   
     elif choice == "d":             #decryption shows the original text
-        print("Decrypted message:", text) 
+        #print("Decrypted message:", text)
+        print("Decrypted message:", result) 
     else:
         print("Invalid choice, choose either 'e' or 'd'") 
 
