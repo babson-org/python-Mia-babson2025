@@ -15,22 +15,7 @@ def _update_position(active_client, transaction):
 
             active_client['positions'].append(position)    # or client['positions].append(position)
     elif transaction['type'] == 'BUY':
-        stock = input("Input the ticker for the stock you want to buy:")
-
-        while True:
-            try:
-                share = int(input("Please enter the amount of shares you want to buy:"))
-                if share>0:
-                    break
-                else:
-                    print("Please enter a positive number greater than zero")
-            except ValueError:
-                txtm = "A number for my kingdom please"
-                print(txtm)
-        price = 5.00
-        cost = price * share
-        if cash > cost:
-            print
+        pass
     elif transaction['type'] == 'SELL':
         pass
     elif transaction['type'] == 'WITHDRAWAL':
