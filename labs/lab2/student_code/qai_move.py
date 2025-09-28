@@ -13,3 +13,9 @@ def ai_move(board: list[int]):
     # TODO: Find the first index where abs(cell) != 10
     # TODO: Return that index as the AI's move
     pass
+
+    for cell in board:
+        if abs(cell) != 10:
+            return cell
+    return None
+    
