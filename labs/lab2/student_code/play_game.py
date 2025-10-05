@@ -152,4 +152,4 @@ def play_game():
     else:
         print("It's a tie!\n")
 
-    play_game()
+play_game()
