@@ -151,3 +151,5 @@ def play_game():
         print(f"I WON! I WON! The {ai_name} WON!!\n")
     else:
         print("It's a tie!\n")
+
+    play_game()
