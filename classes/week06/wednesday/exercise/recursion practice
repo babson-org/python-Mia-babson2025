@@ -1,0 +1,6 @@
+def mySum(n):
+    if n ==1: return 1
+    else: n + mySum(n-1)
+mySum(3)
+
+def find_max(myList):
