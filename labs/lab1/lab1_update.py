@@ -1,152 +1,7 @@
-#Step 1: Define the function
-#Step 2: Prompt user to enter an odd integer
-#Step 3: Validate the input
-#Step 4: For Loop to create top half of the diamond
-#Step 5: For Loop to create bottom half of diamond
-'''
-#RS Read what you wrote here.
-
-Patterns in stars:
-When row increases by 1, stars increase by 2 until the 
-middle line then decrease by 2
-
-Patterns in spaces:
-When row increases by 1, spaces decrease by 1 until
-the middle line then increase by 1
-
-Patterns in between spaces:
-Excluding the first and last row, when the row increases 
-by 1, between spaces increase by 2 until the middle line
-and then decrease by 2
-'''
-
-def draw_diamond():       #defining function
-
-    prompt = "Enter an odd number for the diamond height: "
-    while True:                    #looping until valid odd integer inputed
-        try:
-            odd_num = int(input(prompt))
-            if odd_num % 2 == 0:
-                print("Enter an odd integer please")
-            else:
-                break
-        except ValueError:
-            txtb = 'An odd integer for my kingdom'
-            print(txtb)
-
-    #top half (including middle line)
-    top_half = (odd_num // 2)+1  
-    for i in range(top_half):
-        stars = 2 * i + 1                #calc for number of stars in each row
-        spaces = (odd_num - stars) // 2     #centers the diamond with decreasing spaces
-        if stars == 1:
-            print(" " * spaces + "*" * stars)
-        else:
-            between_spaces = stars - 2
-            print(" " * spaces + "*" + " " * between_spaces + "*")
-
-    #bottom half of diamond (excluding middle line)
-    bottom_half = top_half - 1          
-    for i in range (bottom_half -1, -1, -1):     #builds bottom half in reverse
-         stars = 2 * i + 1                
-         spaces = (odd_num - stars) // 2  
-         if stars == 1:   
-            print(" " * spaces + "*" * stars)
-         else:
-            between_spaces = stars - 2
-            print(" " * spaces + "*" + " " * between_spaces + "*")
-    
-
-#Step 1: Define the Function
-#Step 2: Ask user for block of text
-#Step 3: Count # of words in block using len() and .split()
-#Step 4: Count # of letters in block using for loop
-#Step 5: Count # of sentences in block using for loop
-def text_analysis():                            #defining function
-    block = input("Enter a block of text: ")
-    words = len(block.split())           #splits text into words then counts words with len()
-    print("# of Words:", words)
-
-    letter_count = 0
-    for char in block:                #iterates over every character in block
-        if char.isalpha():             #checks if character is a-z or A-Z (letters)
-            letter_count = letter_count + 1       #counts number of characters that are letters
-    print("# of Letters:", letter_count)
-
-    punctuation = ('.', '!', '?')          #list of punctuation that goes at end of a sentence
-    sentence_count = 0
-    for char in block:                   #iterates over every character in block
-            if char in punctuation:      #checks if character is ending punctuation
-                sentence_count = sentence_count + 1   #increments setence count
-    print("# of Sentences:", sentence_count)
-
-
-#Step 1: Create alphabet list using ASCII code
-#Step 2: Prompt the user to enter text
-#Step 3: Prompt the user to input shift value (int 1-25)
-#Step 4: Prompt the user to encrypt or decrypt the shift
-    #If user inputs to encrypt
-    #Step 5: Create a list to hold the shifted characters
-    #Step 6: Loop through each character in text
-    #Step 7: Join the shifted characters into a string
-    #Step 8: Display the results
-    #If user inputs to decrypt
-    #Step 5: Display original text 
-def caesar_cipher():                          #defining function
-    alphabet = []
-    for idx in range(26):
-        letter = chr(idx+97) #ASCII code for 'a'
-        alphabet.append(letter)
-
-    text = input("Enter text:")
-    length = len(text)                        #number of characters in the text
-    shifted_text = [None] * length            #empty list for shifted characters
-    
-    txt = "Enter shift value (integer) between 1-25: "
-    while True:                       #loops until user inputs valid integer (1-25)
-        try:
-            shift = int(input(txt))
-            if 1<= shift <=  25:
-                break
-            else:
-                print("Shift must be between 1 and 25")
-        except ValueError:
-            txtm = 'A number for my kingdom'
-            print(txtm)
-
-    choice = input("Type 'e' to encrypt or 'd' to decrypt: ").lower()
-
-    '''
-    you need to change the sign of shift to decrypt
-    '''
-
-    if choice == 'd': shift = -shift
-
-    for i, char in enumerate(text):  #each character and its position
-        char_lower = char.lower()    #converts character to lowercase
-        if char_lower in alphabet:
-            index = alphabet.index(char_lower)   #identify the index of character
-            shifted_index = (index + shift) % 26   #apply shift with wrap around
-            shifted_char = alphabet[shifted_index]
-            shifted_text[i] = shifted_char      
-        else:
-            shifted_text[i] = char        #keeps non-letters the same
-    result = "".join(shifted_text)        #joins list into a string
-   
-    if choice == "e":           
-        print("Encrypted message:", result)   
-    elif choice == "d":             #decryption shows the original text
-        #print("Decrypted message:", text)
-        print("Decrypted message:", result) 
-    else:
-        print("Invalid choice, choose either 'e' or 'd'") 
-
-#Step 1: Define main function
-#Step 2: Display the three prorams
-#Step 3: Prompt user to choose one of the programs (1, 2, 3)
-#Step 4: Call the function depending on user choice
-#Step 5: Exit program if user does not input 1, 2, or 3
-def main():           #placed last because functions are defined above
+# ==============================
+# Main Program
+# ==============================
+def main():
     while True:
         print("Lab 1 - Python Basics")
         print("1. Draw Diamond")
@@ -154,15 +9,109 @@ def main():           #placed last because functions are defined above
         print("3. Caesar Cipher")
         choice = input("Select part to run (1-3): ")
         
-        if choice == "1":            
-            draw_diamond()             #calling diamond function defined above
-        elif choice == "2":            
-            text_analysis()            #calling text analysis function defined above
-        elif choice == "3":             
-            caesar_cipher()            #calling caesar cipher function defined above
+        if choice == "1":
+            draw_diamond()
+        elif choice == "2":
+            text_analysis()
+        elif choice == "3":
+            caesar_cipher()
         else:
             exit()
-main()                     #calling main function
 
-if __name__ == "__main__":   #main function only runs when this file is executed directly
+
+
+"""
+Lab 1 - Python Basics
+Author: <Your Name>
+Instructions: Complete each part below. Save your work and commit + sync in Codespaces.
+"""
+
+# ==============================
+# Part 1: Draw a Diamond
+# ==============================
+def draw_diamond():
+    """
+    Ask the user for an odd number for the diamond height
+    and print a symmetric diamond of that height.
+    """
+    
+    print("you have some work todo!, draw_diamond")
+
+    # TODO: Prompt user for an odd number
+    height = int(input("Enter an odd number for the diamond height: "))
+
+    # TODO: Draw the top half of the diamond
+
+    # TODO: Draw the bottom half of the diamond
+
+# Uncomment to test Part 1
+# draw_diamond()
+
+
+# ==============================
+# Part 2: Count Letters, Words, and Sentences
+# ==============================
+def text_analysis():
+    """
+    Ask the user for a block of text.
+    Count and display:
+        - Number of letters (only count a-zA-Z)
+        - Number of words   (use split())
+        - Number of sentences (., ?, !) 
+    """
+
+    print("you have some work todo!, text_analysis")
+
+    # TODO: Get user input
+    text = input("Enter some text: ")
+
+    # TODO: Count letters
+    letters = 0
+
+    # TODO: Count words
+
+    # TODO: Count sentences
+
+    # TODO: Print the results
+    print(f"Letters: {letters}")
+    print(f"Words: {0}")        # replace 0
+    print(f"Sentences: {0}")    # replace 0
+
+# Uncomment to test Part 2
+# text_analysis()
+
+
+# ==============================
+# Part 3: Caesar Cipher – Encrypt and Decrypt
+# ==============================
+def caesar_cipher():
+    """
+    Ask the user for text and a shift value.
+    Provide options to encrypt or decrypt the text using a Caesar cipher.
+    """
+
+    print("you have some work todo!, caesar_cypher")
+
+    # TODO: Get user input text
+    text = input("Enter text: ")
+
+    # TODO: Get shift value
+    shift = int(input("Enter shift value (integer): "))
+
+    # TODO: Ask user whether to encrypt or decrypt
+    choice = input("Type 'e' to encrypt or 'd' to decrypt: ").lower()
+
+    # TODO: Implement encryption and decryption logic
+    result = ""
+
+    # TODO: Print the final result
+    print("Result:", result)
+
+# Uncomment to test Part 3
+# caesar_cipher()
+
+
+
+
+if __name__ == "__main__":
     main()

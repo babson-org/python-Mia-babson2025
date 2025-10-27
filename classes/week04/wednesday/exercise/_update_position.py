@@ -76,38 +76,3 @@ This way:
 
 
 '''
-def _update_position(client, transaction):
-
-    symbol = transaction["symbol"]
-    shares = transaction["shares"]
-    trn_type = transaction["type"]
-
-  
-    if trn_type == "CONTRIBUTION":
-        cash_pos = next((p for p in client["positions"] if p["symbol"] == "$$$$"), None)
-        if cash_pos:
-            cash_pos["shares"] += shares
-        else:
-            cash_pos = {
-                "id": transaction["id"],
-                "shares": shares,
-                "symbol": "$$$$",
-                "name": "Cash",
-                "avg_cost": 1.00
-            }
-            client["positions"].append(cash_pos)
-
- 
-    elif trn_type == "WITHDRAWAL":
-        cash_pos = next((p for p in client["positions"] if p["symbol"] == "$$$$"), None)
-        if not cash_pos:
-            raise ValueError("Withdrawal failed: no cash position found.")
-        if cash_pos["shares"] < shares:
-            raise ValueError("Withdrawal failed: insufficient cash balance.")
-        cash_pos["shares"] -= shares
-
-    elif trn_type in ("BUY", "SELL"):
-        return None
-
-    else:
-        raise ValueError(f"Unknown transaction type: {trn_type}")
