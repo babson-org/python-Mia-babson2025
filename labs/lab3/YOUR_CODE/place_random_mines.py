@@ -72,9 +72,9 @@ def place_random_mines(board):
 
         # Only place mine if the cell is empty 
 
-        if board[row][col] != MINE_VALUE: 
+        if board[row][col] != mine_val: 
 
-            board[row][col] = MINE_VALUE 
+            board[row][col] = mine_val
 
             mines_placed += 1 
 

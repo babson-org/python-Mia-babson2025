@@ -3,7 +3,7 @@
 import globals as g 
 from get_adjacent_cells import get_adjacent_cells 
 
-def reveal_cell(board, row, col, revealed): """ Reveals the chosen cell and expands if it’s a 0-cell. 
+""" Reveals the chosen cell and expands if its a 0-cell. 
 
 Args: 
     board: the hidden board with all numbers and mines 
@@ -12,6 +12,7 @@ Args:
 """ 
  
     # Stop if this cell has already been revealed 
+def reveal_cell(board, row, col, revealed):
     if (row, col) in revealed: 
         return 
     
