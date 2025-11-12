@@ -26,7 +26,12 @@ def print_board(board: list, level: int):
     for row in range(globals.ROWS):
         print(f'  {row}   ', end='')
         for col in range(globals.COLS):
-            symbol = board[row][col][level]
+            cell = board[row][col]
+
+            if isinstance(cell, (list, tuple)):
+                symbol = cell[level]
+            else:
+                symbol = cell
 
             if symbol == '💣':
                 print(f'| {symbol:3}', end='')
