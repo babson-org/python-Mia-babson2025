@@ -1,3 +1,4 @@
+#use this version for exam
 def caesar_cipher():
     import string
 
@@ -8,7 +9,7 @@ def caesar_cipher():
     # Shift amount
     shift = int(input("Enter shift amount (e.g., 3): "))
 
-    letters = list(string.ascii_uppercase) 
+    letters = list(string.ascii_uppercase)   #use this on exam 
     encrypted_letters  = [""] * 26  # why do we do this?
     for idx in range(26):
         new_idx = (idx - shift) % 26
