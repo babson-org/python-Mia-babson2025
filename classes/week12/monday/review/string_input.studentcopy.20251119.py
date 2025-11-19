@@ -1,3 +1,4 @@
+#helpful for exam
 lines = []
 print("Enter text (blank line to finish):")
 

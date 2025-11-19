@@ -15,7 +15,7 @@ def caesar_cipher():
 
     result = ""
 
-    # Caesar shift logic
+    # Caesar shift logic   #do not use this on exam
     for ch in text:
         if 'A' <= ch <= 'Z':
             result += chr((ord(ch) - ord('A') + shift) % 26 + ord('A'))
