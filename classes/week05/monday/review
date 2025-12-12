@@ -1,0 +1,33 @@
+import random
+def monty_hall_trials(switch):
+    doors = [0, 1, 2]
+    prize_door = random.choice(doors)
+    player_choice = random.choice(doors)
+    possible_doors_for_monty = []
+    for d in doors:
+        if d != player_choice and d != prize_door:
+            possible_doors_for_monty.append(d)
+    monty_opens = random.choice(possible_doors_for_monty)
+
+    if switch:
+        remaining = []
+        for d in doors:
+            if d != player_choice and d != monty_opens:
+                remaining.append(d)
+        player_choice = remaining[0]
+
+    return player_choice == prize_door
+
+no_switch_win = monty_hall_trials(switch = False)
+switch_win = monty_hall_trials(switch=True)
+
+if no_switch_win:
+    print("Trial 1(no switch): Win")
+else:
+    print("Trial 1 (no switch): Lose")
+
+if switch_win:
+    print("Trial 2(switch): Win")
+else:
+    print("Trial 2(Switch): Lose")
+        
